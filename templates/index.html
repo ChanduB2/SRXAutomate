@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRX Firewall Configuration Automation</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-shield-alt me-2"></i>
+                SRX Automation
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#" onclick="showTopology()">
+                    <i class="fas fa-sitemap me-1"></i>
+                    Network Topology
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Header -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-cogs me-2"></i>
+                            Juniper SRX Firewall Configuration Automation
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Automated configuration tool for Juniper SRX firewalls using PyEZ.
+                            Configure interfaces, security zones, and policies with ease.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connection Status -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-wifi me-2"></i>
+                            Device Connection
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="connectionStatus" class="alert alert-secondary">
+                            <i class="fas fa-circle-notch fa-spin me-2"></i>
+                            Not connected
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="checkConnection()">
+                            <i class="fas fa-plug me-2"></i>
+                            Test Connection
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuration Form -->
+        <div class="row mt-4">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-wrench me-2"></i>
+                            Device Configuration
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="configForm">
+                            <!-- Device Connection Settings -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="deviceIP" class="form-label">
+                                        <i class="fas fa-server me-1"></i>
+                                        Device IP Address
+                                    </label>
+                                    <input type="text" class="form-control" id="deviceIP" 
+                                           value="192.168.1.1" placeholder="192.168.1.1">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="mockMode" class="form-label">
+                                        <i class="fas fa-flask me-1"></i>
+                                        Operation Mode
+                                    </label>
+                                    <select class="form-select" id="mockMode">
+                                        <option value="true">Mock/Simulation Mode</option>
+                                        <option value="false">Real Device Mode</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3" id="credentialsRow">
+                                <div class="col-md-6">
+                                    <label for="username" class="form-label">
+                                        <i class="fas fa-user me-1"></i>
+                                        Username
+                                    </label>
+                                    <input type="text" class="form-control" id="username" 
+                                           value="admin" placeholder="admin">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="password" class="form-label">
+                                        <i class="fas fa-lock me-1"></i>
+                                        Password
+                                    </label>
+                                    <input type="password" class="form-control" id="password" 
+                                           value="admin" placeholder="password">
+                                </div>
+                            </div>
+
+                            <!-- Interface Configuration -->
+                            <hr>
+                            <h6 class="text-muted mb-3">
+                                <i class="fas fa-ethernet me-1"></i>
+                                Interface Configuration
+                            </h6>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="interfaceName" class="form-label">Interface Name</label>
+                                    <input type="text" class="form-control" id="interfaceName" 
+                                           value="ge-0/0/1" placeholder="ge-0/0/1">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="interfaceIP" class="form-label">IP Address/CIDR</label>
+                                    <input type="text" class="form-control" id="interfaceIP" 
+                                           value="192.168.10.1/24" placeholder="192.168.10.1/24">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="securityZone" class="form-label">Security Zone</label>
+                                    <select class="form-select" id="securityZone">
+                                        <option value="trust">Trust</option>
+                                        <option value="untrust">Untrust</option>
+                                        <option value="vpn">VPN</option>
+                                        <option value="dmz">DMZ</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="d-flex gap-2 mt-4">
+                                <button type="button" class="btn btn-success" onclick="applyConfiguration()">
+                                    <i class="fas fa-play me-2"></i>
+                                    Apply Configuration
+                                </button>
+                                <button type="button" class="btn btn-warning" onclick="createBackup()">
+                                    <i class="fas fa-download me-2"></i>
+                                    Create Backup
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="validateConfig()">
+                                    <i class="fas fa-check-circle me-2"></i>
+                                    Validate
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Panel -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            System Status
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="deviceInfo">
+                            <p class="text-muted">No device information available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-bolt me-2"></i>
+                            Quick Actions
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary btn-sm" onclick="showTopology()">
+                                <i class="fas fa-sitemap me-2"></i>
+                                View Network Topology
+                            </button>
+                            <button class="btn btn-outline-info btn-sm" onclick="showHistory()">
+                                <i class="fas fa-history me-2"></i>
+                                Configuration History
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="showLogs()">
+                                <i class="fas fa-file-alt me-2"></i>
+                                View Logs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="row mt-4" id="resultsPanel" style="display: none;">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-terminal me-2"></i>
+                            Configuration Results
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="resultsContent">
+                            <!-- Dynamic content will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuration History Modal -->
+        <div class="modal fade" id="historyModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-history me-2"></i>
+                            Configuration History
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="historyContent">
+                            <div class="text-center">
+                                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                                <p class="mt-2">Loading history...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Network Topology Modal -->
+        <div class="modal fade" id="topologyModal" tabindex="-1">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-sitemap me-2"></i>
+                            Network Topology
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="/topology" width="100%" height="600px" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <i class="fas fa-cog fa-spin fa-3x text-primary mb-3"></i>
+            <h5>Processing Configuration</h5>
+            <p id="loadingMessage">Please wait...</p>
+            <div class="progress">
+                <div id="loadingProgress" class="progress-bar progress-bar-striped progress-bar-animated" 
+                     role="progressbar" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

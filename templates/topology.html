@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Topology - SRX Automation</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .topology-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .network-diagram {
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .device {
+            position: absolute;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .device:hover {
+            transform: scale(1.1);
+        }
+        
+        .device-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        .srx-device {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+        
+        .internet-cloud {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+        
+        .switch-device {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+        
+        .client-device {
+            background: linear-gradient(135deg, #6c757d, #545b62);
+            color: white;
+        }
+        
+        .device-label {
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap;
+        }
+        
+        .connection-line {
+            position: absolute;
+            background: #6c757d;
+            height: 2px;
+            transform-origin: left center;
+        }
+        
+        .vpn-tunnel {
+            background: linear-gradient(90deg, #ffc107, transparent, #ffc107);
+            height: 3px;
+            animation: vpn-flow 2s infinite;
+        }
+        
+        @keyframes vpn-flow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .zone-overlay {
+            position: absolute;
+            border: 2px dashed;
+            border-radius: 15px;
+            background: rgba(0,0,0,0.05);
+            padding: 10px;
+        }
+        
+        .trust-zone {
+            border-color: #28a745;
+            background: rgba(40, 167, 69, 0.1);
+        }
+        
+        .untrust-zone {
+            border-color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+        
+        .vpn-zone {
+            border-color: #ffc107;
+            background: rgba(255, 193, 7, 0.1);
+        }
+        
+        .zone-label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .legend {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .legend-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        
+        .traffic-flow {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #007bff;
+            animation: traffic-flow 3s infinite linear;
+        }
+        
+        @keyframes traffic-flow {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="topology-container">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">
+                            <i class="fas fa-sitemap me-2"></i>
+                            Juniper SRX Network Topology
+                        </h4>
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-outline-primary btn-sm" onclick="showTrafficFlow()">
+                                <i class="fas fa-exchange-alt me-1"></i>
+                                Show Traffic Flow
+                            </button>
+                            <button class="btn btn-outline-success btn-sm" onclick="exportDiagram()">
+                                <i class="fas fa-download me-1"></i>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="network-diagram" id="networkDiagram">
+                                <!-- Security Zones -->
+                                <div class="zone-overlay trust-zone" style="left: 50px; top: 200px; width: 300px; height: 250px;">
+                                    <div class="zone-label text-success">Trust Zone</div>
+                                </div>
+                                
+                                <div class="zone-overlay untrust-zone" style="left: 450px; top: 50px; width: 200px; height: 150px;">
+                                    <div class="zone-label text-danger">Untrust Zone</div>
+                                </div>
+                                
+                                <div class="zone-overlay vpn-zone" style="left: 50px; top: 50px; width: 300px; height: 120px;">
+                                    <div class="zone-label text-warning">VPN Zone</div>
+                                </div>
+                                
+                                <!-- Main Branch SRX -->
+                                <div class="device" style="left: 370px; top: 200px;" data-device="srx-main">
+                                    <div class="device-icon srx-device">
+                                        <i class="fas fa-shield-alt fa-2x"></i>
+                                    </div>
+                                    <div class="device-label">SRX-Main<br>192.168.1.1</div>
+                                </div>
+                                
+                                <!-- Remote Branch SRX -->
+                                <div class="device" style="left: 100px; top: 80px;" data-device="srx-branch">
+                                    <div class="device-icon srx-device">
+                                        <i class="fas fa-shield-alt fa-2x"></i>
+                                    </div>
+                                    <div class="device-label">SRX-Branch<br>10.0.0.1</div>
+                                </div>
+                                
+                                <!-- Internet Cloud -->
+                                <div class="device" style="left: 500px; top: 80px;" data-device="internet">
+                                    <div class="device-icon internet-cloud">
+                                        <i class="fas fa-cloud fa-2x"></i>
+                                    </div>
+                                    <div class="device-label">Internet<br>Cloud</div>
+                                </div>
+                                
+                                <!-- Trust Network Switch -->
+                                <div class="device" style="left: 200px; top: 280px;" data-device="trust-switch">
+                                    <div class="device-icon switch-device">
+                                        <i class="fas fa-network-wired fa-2x"></i>
+                                    </div>
+                                    <div class="device-label">Trust Switch<br>192.168.10.x</div>
+                                </div>
+                                
+                                <!-- Client Devices -->
+                                <div class="device" style="left: 100px; top: 380px;" data-device="client1">
+                                    <div class="device-icon client-device">
+                                        <i class="fas fa-desktop fa-lg"></i>
+                                    </div>
+                                    <div class="device-label">Workstation<br>192.168.10.10</div>
+                                </div>
+                                
+                                <div class="device" style="left: 250px; top: 380px;" data-device="client2">
+                                    <div class="device-icon client-device">
+                                        <i class="fas fa-laptop fa-lg"></i>
+                                    </div>
+                                    <div class="device-label">Laptop<br>192.168.10.20</div>
+                                </div>
+                                
+                                <!-- Connection Lines -->
+                                <div class="connection-line" style="left: 170px; top: 110px; width: 220px; transform: rotate(25deg);"></div>
+                                <div class="connection-line vpn-tunnel" style="left: 170px; top: 115px; width: 220px; transform: rotate(25deg);"></div>
+                                
+                                <div class="connection-line" style="left: 430px; top: 140px; width: 100px; transform: rotate(-45deg);"></div>
+                                
+                                <div class="connection-line" style="left: 230px; top: 270px; width: 160px; transform: rotate(-15deg);"></div>
+                                
+                                <div class="connection-line" style="left: 170px; top: 340px; width: 80px; transform: rotate(45deg);"></div>
+                                <div class="connection-line" style="left: 260px; top: 340px; width: 80px; transform: rotate(-45deg);"></div>
+                                
+                                <!-- Interface Labels -->
+                                <div style="position: absolute; left: 300px; top: 190px; font-size: 10px; color: #666;">
+                                    ge-0/0/1<br>192.168.10.1/24
+                                </div>
+                                
+                                <div style="position: absolute; left: 450px; top: 170px; font-size: 10px; color: #666;">
+                                    ge-0/0/0<br>DHCP
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3">
+                            <div class="legend">
+                                <h6 class="mb-3">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    Legend
+                                </h6>
+                                
+                                <div class="legend-item">
+                                    <div class="legend-icon srx-device"></div>
+                                    <span>SRX Firewall</span>
+                                </div>
+                                
+                                <div class="legend-item">
+                                    <div class="legend-icon internet-cloud"></div>
+                                    <span>Internet/WAN</span>
+                                </div>
+                                
+                                <div class="legend-item">
+                                    <div class="legend-icon switch-device"></div>
+                                    <span>Network Switch</span>
+                                </div>
+                                
+                                <div class="legend-item">
+                                    <div class="legend-icon client-device"></div>
+                                    <span>Client Device</span>
+                                </div>
+                                
+                                <hr>
+                                
+                                <div class="legend-item">
+                                    <div style="width: 20px; height: 3px; background: #6c757d; margin-right: 10px;"></div>
+                                    <span>Network Link</span>
+                                </div>
+                                
+                                <div class="legend-item">
+                                    <div style="width: 20px; height: 3px; background: linear-gradient(90deg, #ffc107, transparent, #ffc107); margin-right: 10px;"></div>
+                                    <span>VPN Tunnel</span>
+                                </div>
+                                
+                                <hr>
+                                
+                                <h6 class="mb-2">Security Zones</h6>
+                                <div class="legend-item">
+                                    <div style="width: 20px; height: 20px; border: 2px dashed #28a745; background: rgba(40, 167, 69, 0.1); margin-right: 10px;"></div>
+                                    <span>Trust Zone</span>
+                                </div>
+                                
+                                <div class="legend-item">
+                                    <div style="width: 20px; height: 20px; border: 2px dashed #dc3545; background: rgba(220, 53, 69, 0.1); margin-right: 10px;"></div>
+                                    <span>Untrust Zone</span>
+                                </div>
+                                
+                                <div class="legend-item">
+                                    <div style="width: 20px; height: 20px; border: 2px dashed #ffc107; background: rgba(255, 193, 7, 0.1); margin-right: 10px;"></div>
+                                    <span>VPN Zone</span>
+                                </div>
+                                
+                                <hr>
+                                
+                                <div class="mt-3">
+                                    <h6 class="mb-2">Configuration Details</h6>
+                                    <small class="text-muted">
+                                        <strong>Interface:</strong> ge-0/0/1<br>
+                                        <strong>IP:</strong> 192.168.10.1/24<br>
+                                        <strong>Zone:</strong> Trust<br>
+                                        <strong>Policy:</strong> Allow HTTP/HTTPS to Untrust
+                                    </small>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3 p-3 bg-light rounded">
+                                <h6 class="mb-2">
+                                    <i class="fas fa-info-circle text-info me-2"></i>
+                                    Design Notes
+                                </h6>
+                                <small class="text-muted">
+                                    This topology shows a typical branch office setup with SRX firewalls 
+                                    providing security between trust and untrust zones, with VPN connectivity 
+                                    between sites. The configuration automates interface setup and security policies.
+                                </small>
+                            </div>
+                            
+                            <div class="mt-3 p-3 bg-primary text-white rounded">
+                                <h6 class="mb-2">
+                                    <i class="fas fa-download me-2"></i>
+                                    Draw.io Integration
+                                </h6>
+                                <small>
+                                    You can recreate this topology in Draw.io by visiting 
+                                    <a href="https://draw.io" target="_blank" class="text-white">draw.io</a> 
+                                    and using the network diagram shapes library.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let trafficFlowVisible = false;
+        
+        function showTrafficFlow() {
+            trafficFlowVisible = !trafficFlowVisible;
+            
+            if (trafficFlowVisible) {
+                // Create traffic flow animations
+                createTrafficFlow('trust', 'untrust', '#007bff');
+                createTrafficFlow('vpn', 'trust', '#ffc107');
+                
+                document.querySelector('button[onclick="showTrafficFlow()"]').innerHTML = 
+                    '<i class="fas fa-stop me-1"></i> Stop Traffic Flow';
+            } else {
+                // Remove traffic flow animations
+                document.querySelectorAll('.traffic-flow').forEach(el => el.remove());
+                
+                document.querySelector('button[onclick="showTrafficFlow()"]').innerHTML = 
+                    '<i class="fas fa-exchange-alt me-1"></i> Show Traffic Flow';
+            }
+        }
+        
+        function createTrafficFlow(from, to, color) {
+            // Simple traffic flow animation - would be more sophisticated in a real implementation
+            const flow = document.createElement('div');
+            flow.className = 'traffic-flow';
+            flow.style.background = color;
+            
+            // Position based on zones (simplified)
+            if (from === 'trust' && to === 'untrust') {
+                flow.style.left = '350px';
+                flow.style.top = '220px';
+            } else if (from === 'vpn' && to === 'trust') {
+                flow.style.left = '200px';
+                flow.style.top = '150px';
+            }
+            
+            document.getElementById('networkDiagram').appendChild(flow);
+        }
+        
+        function exportDiagram() {
+            // Simple export functionality - in a real application, this would capture the diagram
+            const instructions = `
+Network Topology Export Instructions:
+
+1. Open https://draw.io in a new tab
+2. Create a new diagram
+3. Use the following components:
+   - Network shapes from the "Network" library
+   - SRX firewalls (use rectangle with shield icon)
+   - Cloud shape for Internet
+   - Switch shapes for network equipment
+   - Computer/laptop shapes for clients
+
+4. Implement the following layout:
+   - Trust Zone: 192.168.10.0/24 network
+   - Untrust Zone: Internet connection
+   - VPN Zone: Site-to-site connectivity
+   - Configure ge-0/0/1 interface with IP 192.168.10.1/24
+   - Security policies allowing HTTP/HTTPS from trust to untrust
+
+5. Export as PNG or share the public link
+
+This topology represents the automated SRX configuration implemented by the Python script.
+            `;
+            
+            alert(instructions);
+        }
+        
+        // Add hover effects for devices
+        document.querySelectorAll('.device').forEach(device => {
+            device.addEventListener('click', function() {
+                const deviceName = this.getAttribute('data-device');
+                showDeviceInfo(deviceName);
+            });
+        });
+        
+        function showDeviceInfo(deviceName) {
+            let info = '';
+            
+            switch(deviceName) {
+                case 'srx-main':
+                    info = 'Main SRX Firewall\n- Model: SRX300\n- IP: 192.168.1.1\n- Role: Primary security gateway\n- Configured interface: ge-0/0/1';
+                    break;
+                case 'srx-branch':
+                    info = 'Branch SRX Firewall\n- Model: SRX300\n- IP: 10.0.0.1\n- Role: Branch security gateway\n- VPN endpoint';
+                    break;
+                case 'internet':
+                    info = 'Internet Cloud\n- Represents external network\n- Untrust zone destination\n- HTTP/HTTPS traffic allowed from trust zone';
+                    break;
+                case 'trust-switch':
+                    info = 'Trust Network Switch\n- Network: 192.168.10.0/24\n- Connected to SRX ge-0/0/1\n- Security zone: Trust';
+                    break;
+                default:
+                    info = `Device: ${deviceName}\nClick for more information`;
+            }
+            
+            alert(info);
+        }
+    </script>
+</body>
+</html>
