@@ -33,13 +33,12 @@ config_history = []
 
 @app.route('/')
 def index():
-    """Main dashboard for SRX configuration automation"""
-    return render_template('index.html')
+    return "🚀 SRXAutomate is Running on Railway!"
 
 @app.route('/topology')
 def topology():
     """Network topology visualization page"""
-    return render_template('topology.html')
+    return "🗺️ Network Topology Visualization"
 
 @app.route('/api/configure', methods=['POST'])
 def configure_device():
