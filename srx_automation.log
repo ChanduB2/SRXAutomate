@@ -1,0 +1,360 @@
+2025-08-04 13:38:39,353 - __main__ - INFO - Starting SRX Automation Web Interface
+2025-08-04 13:38:39,353 - __main__ - INFO - Access the application at http://localhost:5000
+2025-08-04 13:38:39,391 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.31.124.162:5000
+2025-08-04 13:38:39,391 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-04 13:38:39,396 - werkzeug - INFO -  * Restarting with stat
+2025-08-04 13:38:39,862 - __main__ - INFO - Starting SRX Automation Web Interface
+2025-08-04 13:38:39,862 - __main__ - INFO - Access the application at http://localhost:5000
+2025-08-04 13:38:39,875 - werkzeug - WARNING -  * Debugger is active!
+2025-08-04 13:38:39,875 - werkzeug - INFO -  * Debugger PIN: 219-707-314
+2025-08-04 13:38:43,502 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:38:43] "GET / HTTP/1.1" 200 -
+2025-08-04 13:38:44,075 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:38:44] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-08-04 13:38:44,714 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:38:44] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-08-04 13:38:46,043 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:38:46] "GET /topology HTTP/1.1" 200 -
+2025-08-04 13:38:47,146 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:38:47] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 13:38:47,156 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:38:47] "GET /api/status?device_ip=192.168.1.1&username=admin&password=admin&mock_mode=true HTTP/1.1" 200 -
+2025-08-04 13:38:56,749 - werkzeug - INFO - 127.0.0.1 - - [04/Aug/2025 13:38:56] "GET / HTTP/1.1" 200 -
+2025-08-04 13:38:56,769 - werkzeug - INFO - 127.0.0.1 - - [04/Aug/2025 13:38:56] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-08-04 13:38:56,774 - werkzeug - INFO - 127.0.0.1 - - [04/Aug/2025 13:38:56] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-08-04 13:38:56,791 - werkzeug - INFO - 127.0.0.1 - - [04/Aug/2025 13:38:56] "GET /topology HTTP/1.1" 200 -
+2025-08-04 13:38:57,548 - werkzeug - INFO - 127.0.0.1 - - [04/Aug/2025 13:38:57] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 13:38:57,549 - werkzeug - INFO - 127.0.0.1 - - [04/Aug/2025 13:38:57] "GET /api/status?device_ip=192.168.1.1&username=admin&password=admin&mock_mode=true HTTP/1.1" 200 -
+2025-08-04 13:39:23,244 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:39:23] "GET /api/status?device_ip=192.168.1.1&username=admin&password=admin&mock_mode=true HTTP/1.1" 200 -
+2025-08-04 13:39:29,557 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:39:29] "GET /api/status?device_ip=192.168.1.1&username=admin&password=admin&mock_mode=true HTTP/1.1" 200 -
+2025-08-04 13:40:51,849 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 13:40:51,849 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 13:40:51,850 - mock_device - INFO - Starting mock configuration for interface ge-0/0/1
+2025-08-04 13:40:51,850 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 13:40:52,850 - mock_device - INFO - Mock connection established successfully
+2025-08-04 13:40:52,852 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 13:40:53,352 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 13:40:53,853 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 13:40:54,358 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 13:40:54,862 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 13:40:55,365 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 13:40:55,867 - mock_device - ERROR - Mock error during step: Validating configuration
+2025-08-04 13:40:55,869 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:40:55] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 13:43:28,687 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:43:28] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 13:44:18,019 - __main__ - INFO - Starting configuration - Mock Mode: False
+2025-08-04 13:44:18,019 - srx_config - INFO - Connecting to SRX device at 192.168.1.1
+2025-08-04 13:44:48,049 - srx_config - ERROR - Failed to connect to 192.168.1.1: ConnectTimeoutError(192.168.1.1)
+2025-08-04 13:44:48,054 - __main__ - ERROR - Configuration error: ConnectTimeoutError(192.168.1.1)
+2025-08-04 13:44:48,054 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:44:48] "[35m[1mPOST /api/configure HTTP/1.1[0m" 500 -
+2025-08-04 13:46:38,204 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:46:38] "GET /api/status?device_ip=192.168.1.1&username=xyz&password=1234&mock_mode=true HTTP/1.1" 200 -
+2025-08-04 13:46:44,383 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:46:44] "POST /api/backup HTTP/1.1" 200 -
+2025-08-04 13:48:25,816 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 13:48:25,816 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 13:48:25,816 - mock_device - INFO - Starting mock configuration for interface ge-0/0/1
+2025-08-04 13:48:25,817 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 13:48:26,817 - mock_device - INFO - Mock connection established successfully
+2025-08-04 13:48:26,817 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 13:48:27,317 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 13:48:27,818 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 13:48:28,318 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 13:48:28,818 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 13:48:29,319 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 13:48:29,819 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 13:48:30,319 - mock_device - INFO - Mock device state updated
+2025-08-04 13:48:30,319 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 13:48:30,320 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:48:30] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 13:48:31,676 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:48:31] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 13:53:12,882 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:53:12] "GET / HTTP/1.1" 200 -
+2025-08-04 13:53:13,484 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:53:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-08-04 13:53:14,069 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:53:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-08-04 13:53:15,178 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:53:15] "GET /topology HTTP/1.1" 200 -
+2025-08-04 13:53:15,753 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:53:15] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 13:53:15,760 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:53:15] "GET /api/status?device_ip=192.168.1.1&username=admin&password=admin&mock_mode=true HTTP/1.1" 200 -
+2025-08-04 13:53:26,293 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 13:53:26] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:00:56,420 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:00:56,420 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:00:56,420 - mock_device - INFO - Starting mock configuration for interface ge-0/0/1
+2025-08-04 14:00:56,421 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:00:57,421 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:00:57,421 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:00:57,921 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:00:58,421 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:00:58,922 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:00:59,422 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:00:59,922 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:01:00,423 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:01:00,923 - mock_device - INFO - Mock device state updated
+2025-08-04 14:01:00,923 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:01:00,924 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:01:00] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:01:02,268 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:01:02] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:06:43,009 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:06:43,009 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:06:43,009 - mock_device - INFO - Starting mock configuration for interface ge-0/0/1
+2025-08-04 14:06:43,009 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:06:44,009 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:06:44,010 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:06:44,510 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:06:45,010 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:06:45,510 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:06:46,011 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:06:46,511 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:06:47,011 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:06:47,511 - mock_device - INFO - Mock device state updated
+2025-08-04 14:06:47,512 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:06:47,512 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:06:47] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:06:48,879 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:06:48] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:07:22,730 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:07:22,730 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:07:22,730 - mock_device - INFO - Starting mock configuration for interface ge-0/0/1
+2025-08-04 14:07:22,730 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:07:23,731 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:07:23,731 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:07:24,231 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:07:24,731 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:07:25,232 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:07:25,732 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:07:26,232 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:07:26,732 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:07:27,233 - mock_device - INFO - Mock device state updated
+2025-08-04 14:07:27,233 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:07:27,233 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:07:27] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:07:28,594 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:07:28] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:10:24,884 - srx_config - INFO - Connecting to SRX device at 192.168.1.1
+2025-08-04 14:10:54,915 - srx_config - ERROR - Failed to connect to 192.168.1.1: ConnectTimeoutError(192.168.1.1)
+2025-08-04 14:10:54,915 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:10:54] "GET /api/status?device_ip=192.168.1.1&username=admin&password=admin&mock_mode=false HTTP/1.1" 200 -
+2025-08-04 14:21:33,323 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:21:33] "GET /api/status?device_ip=192.168.1.1&username=admin&password=admin&mock_mode=true HTTP/1.1" 200 -
+2025-08-04 14:22:49,434 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:22:49,434 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:22:49,434 - mock_device - INFO - Starting mock configuration for interface ge-0/0/2
+2025-08-04 14:22:49,434 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:22:50,436 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:22:50,438 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:22:50,939 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:22:51,439 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:22:51,939 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:22:52,439 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:22:52,940 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:22:53,440 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:22:53,940 - mock_device - INFO - Mock device state updated
+2025-08-04 14:22:53,940 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:22:53,941 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:22:53] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:22:55,405 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:22:55] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:23:32,603 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:23:32,604 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:23:32,604 - mock_device - INFO - Starting mock configuration for interface ge-0/0/2
+2025-08-04 14:23:32,604 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:23:33,604 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:23:33,604 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:23:34,104 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:23:34,605 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:23:35,105 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:23:35,605 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:23:36,106 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:23:36,614 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:23:37,114 - mock_device - INFO - Mock device state updated
+2025-08-04 14:23:37,115 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:23:37,115 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:23:37] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:23:39,382 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:23:39] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:23:54,370 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:23:54,370 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:23:54,370 - mock_device - INFO - Starting mock configuration for interface ge-0/0/2
+2025-08-04 14:23:54,370 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:23:55,371 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:23:55,371 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:23:55,871 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:23:56,371 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:23:56,871 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:23:57,372 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:23:57,872 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:23:58,372 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:23:58,873 - mock_device - INFO - Mock device state updated
+2025-08-04 14:23:58,873 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:23:58,873 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:23:58] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:24:00,236 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:24:00] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:24:24,946 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:24:24,946 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:24:24,946 - mock_device - INFO - Starting mock configuration for interface ge-0/0/2
+2025-08-04 14:24:24,946 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:24:25,946 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:24:25,947 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:24:26,447 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:24:26,947 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:24:27,448 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:24:27,948 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:24:28,448 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:24:28,948 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:24:29,449 - mock_device - INFO - Mock device state updated
+2025-08-04 14:24:29,449 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:24:29,449 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:24:29] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:24:30,794 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:24:30] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:31:54,994 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:31:54] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:46:43,731 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:46:43,731 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:46:43,732 - mock_device - INFO - Starting mock configuration for interface ge-0/0/2
+2025-08-04 14:46:43,732 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:46:44,732 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:46:44,732 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:46:45,232 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:46:45,733 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:46:46,234 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:46:46,736 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:46:47,236 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:46:47,737 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:46:48,237 - mock_device - INFO - Mock device state updated
+2025-08-04 14:46:48,237 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:46:48,238 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:46:48] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:46:49,553 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:46:49] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:50:27,061 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:50:27] "GET / HTTP/1.1" 200 -
+2025-08-04 14:50:27,721 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:50:27] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-08-04 14:50:28,604 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:50:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-08-04 14:50:29,915 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:50:29] "GET /topology HTTP/1.1" 200 -
+2025-08-04 14:50:30,402 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:50:30] "GET /api/status?device_ip=192.168.1.1&username=admin&password=admin&mock_mode=true HTTP/1.1" 200 -
+2025-08-04 14:50:30,414 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:50:30] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:51:14,145 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:51:14] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:52:16,731 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:52:16,731 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:52:16,731 - mock_device - INFO - Starting mock configuration for interface ge-0/0/1
+2025-08-04 14:52:16,732 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:52:17,732 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:52:17,732 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:52:18,233 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:52:18,733 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:52:19,234 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:52:19,734 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:52:20,234 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:52:20,735 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:52:21,235 - mock_device - INFO - Mock device state updated
+2025-08-04 14:52:21,236 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:52:21,236 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:52:21] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:52:22,557 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:52:22] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:53:08,308 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:53:08,309 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:53:08,309 - mock_device - INFO - Starting mock configuration for interface ge-0/0/1
+2025-08-04 14:53:08,309 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:53:09,309 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:53:09,310 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:53:09,810 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:53:10,312 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:53:10,813 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:53:11,313 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:53:11,813 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:53:12,314 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:53:12,814 - mock_device - INFO - Mock device state updated
+2025-08-04 14:53:12,814 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:53:12,815 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:53:12] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:53:14,137 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:53:14] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:53:28,331 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:53:28,332 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:53:28,332 - mock_device - INFO - Starting mock configuration for interface ge-0/0/1
+2025-08-04 14:53:28,332 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:53:29,332 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:53:29,332 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:53:29,832 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:53:30,333 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:53:30,834 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:53:31,334 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:53:31,835 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:53:32,336 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:53:32,836 - mock_device - INFO - Mock device state updated
+2025-08-04 14:53:32,836 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:53:32,837 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:53:32] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:53:34,757 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:53:34] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:56:04,689 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:56:04,689 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:56:04,689 - mock_device - INFO - Starting mock configuration for interface ge-0/0/0
+2025-08-04 14:56:04,689 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:56:05,689 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:56:05,690 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:56:06,190 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:56:06,690 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:56:07,191 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:56:07,691 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:56:08,192 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:56:08,692 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:56:09,193 - mock_device - INFO - Mock device state updated
+2025-08-04 14:56:09,193 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:56:09,194 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:56:09] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:56:10,511 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:56:10] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 14:59:37,050 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 14:59:37,051 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 14:59:37,051 - mock_device - INFO - Starting mock configuration for interface ge-0/0/0
+2025-08-04 14:59:37,051 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 14:59:38,051 - mock_device - INFO - Mock connection established successfully
+2025-08-04 14:59:38,052 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 14:59:38,552 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 14:59:39,053 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 14:59:39,553 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 14:59:40,053 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 14:59:40,554 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 14:59:41,054 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 14:59:41,554 - mock_device - INFO - Mock device state updated
+2025-08-04 14:59:41,555 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 14:59:41,555 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:59:41] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 14:59:42,875 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 14:59:42] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 15:00:29,852 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 15:00:29,857 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 15:00:29,860 - mock_device - INFO - Starting mock configuration for interface ge-0/0/0
+2025-08-04 15:00:29,863 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 15:00:30,868 - mock_device - INFO - Mock connection established successfully
+2025-08-04 15:00:30,868 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 15:00:31,369 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 15:00:31,869 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 15:00:32,370 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 15:00:32,872 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 15:00:33,378 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 15:00:33,878 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 15:00:34,382 - mock_device - INFO - Mock device state updated
+2025-08-04 15:00:34,392 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 15:00:34,392 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:00:34] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 15:00:35,764 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:00:35] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 15:04:00,630 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 15:04:00,631 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 15:04:00,631 - mock_device - INFO - Starting mock configuration for interface ge-0/0/5
+2025-08-04 15:04:00,631 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 15:04:01,631 - mock_device - INFO - Mock connection established successfully
+2025-08-04 15:04:01,632 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 15:04:02,134 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 15:04:02,635 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 15:04:03,135 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 15:04:03,635 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 15:04:04,136 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 15:04:04,636 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 15:04:05,136 - mock_device - INFO - Mock device state updated
+2025-08-04 15:04:05,137 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 15:04:05,138 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:04:05] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 15:04:07,849 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:04:07] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 15:04:19,044 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 15:04:19,047 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 15:04:19,047 - mock_device - INFO - Starting mock configuration for interface ge-0/0/5
+2025-08-04 15:04:19,047 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 15:04:20,047 - mock_device - INFO - Mock connection established successfully
+2025-08-04 15:04:20,048 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 15:04:20,549 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 15:04:21,050 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 15:04:21,550 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 15:04:22,051 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 15:04:22,551 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 15:04:23,052 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 15:04:23,552 - mock_device - INFO - Mock device state updated
+2025-08-04 15:04:23,552 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 15:04:23,553 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:04:23] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 15:04:24,884 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:04:24] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 15:05:00,747 - __main__ - INFO - Starting configuration - Mock Mode: True
+2025-08-04 15:05:00,747 - mock_device - INFO - Mock SRX device initialized
+2025-08-04 15:05:00,747 - mock_device - INFO - Starting mock configuration for interface ge-0/0/2
+2025-08-04 15:05:00,747 - mock_device - INFO - Simulating connection to mock SRX device...
+2025-08-04 15:05:01,747 - mock_device - INFO - Mock connection established successfully
+2025-08-04 15:05:01,748 - mock_device - INFO - Step 1/7: Backing up current configuration
+2025-08-04 15:05:02,248 - mock_device - INFO - Step 2/7: Loading interface configuration
+2025-08-04 15:05:02,748 - mock_device - INFO - Step 3/7: Configuring IP address
+2025-08-04 15:05:03,249 - mock_device - INFO - Step 4/7: Assigning to security zone
+2025-08-04 15:05:03,750 - mock_device - INFO - Step 5/7: Creating security policies
+2025-08-04 15:05:04,250 - mock_device - INFO - Step 6/7: Validating configuration
+2025-08-04 15:05:04,751 - mock_device - INFO - Step 7/7: Committing changes
+2025-08-04 15:05:05,251 - mock_device - INFO - Mock device state updated
+2025-08-04 15:05:05,251 - mock_device - INFO - Mock configuration completed successfully
+2025-08-04 15:05:05,252 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:05:05] "POST /api/configure HTTP/1.1" 200 -
+2025-08-04 15:05:06,610 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:05:06] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 15:05:47,741 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:05:47] "GET / HTTP/1.1" 200 -
+2025-08-04 15:05:48,068 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:05:48] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-08-04 15:05:48,294 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:05:48] "GET /topology HTTP/1.1" 200 -
+2025-08-04 15:05:48,304 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:05:48] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-08-04 15:05:49,490 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:05:49] "GET /api/history HTTP/1.1" 200 -
+2025-08-04 15:05:49,494 - werkzeug - INFO - 172.31.124.162 - - [04/Aug/2025 15:05:49] "GET /api/status?device_ip=192.168.1.1&username=admin&password=admin&mock_mode=true HTTP/1.1" 200 -
